@@ -1,0 +1,4 @@
+global:
+  image:
+    name: anilidealguy/demo
+    tag: latest

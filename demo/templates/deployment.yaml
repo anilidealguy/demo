@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-deployment
+  labels:
+    app: demo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: demo
+  template:
+    metadata:
+      labels:
+        app: demo
+    spec:
+      containers:
+        - name: demo
+          image: {{ .Values.global.image.name }}:{{ .Values.global.image.tag }}
+          env:
+            - name: FROM_CONFIG_MAP
+              valueFrom:
+                configMapKeyRef:
+                  name: demo
+                  key: from_config_map
+            - name: FROM_SECRETS
+              valueFrom:
+                secretKeyRef:
+                  name: demo
+                  key: from_secret
+          ports:
+            - containerPort: 80
