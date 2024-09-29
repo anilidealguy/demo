@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: demo
 data:
-  from_config_map : "value_from_config_map"
+  from_config_map : "value_from_config_map_argocd"
